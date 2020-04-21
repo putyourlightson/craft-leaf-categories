@@ -1,0 +1,22 @@
+{
+    "name": "putyourlightson/craft-leaf-categories",
+    "description": "Adds a custom field type in which only leaf categories can be selected.",
+    "version": "1.0.0",
+    "type": "craft-plugin",
+    "license": "mit",
+    "require": {
+        "craftcms/cms": "^3.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "putyourlightson\\leafcategories\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Leaf Categories",
+        "handle": "leaf-categories",
+        "developer": "PutYourLightsOn",
+        "developerUrl": "https://putyourlightson.com/",
+        "class": "putyourlightson\\leafcategories\\LeafCategories"
+    }
+}
