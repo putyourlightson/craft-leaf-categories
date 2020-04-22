@@ -13,6 +13,7 @@ use craft\elements\db\ElementQuery;
 use craft\elements\db\ElementQueryInterface;
 use craft\fields\Categories;
 use craft\helpers\ElementHelper;
+use craft\web\View;
 use putyourlightson\leafcategories\assets\LeafCategoriesAsset;
 
 class LeafCategoriesField extends Categories
@@ -45,7 +46,7 @@ class LeafCategoriesField extends Categories
             ->ids();
 
         $js = 'leafCategoriesDisabledElementIds = ['.implode(', ', $ids).'];';
-        Craft::$app->getView()->registerJs($js);
+        Craft::$app->getView()->registerJs($js, View::POS_BEGIN);
 
         return parent::getInputHtml($value, $element);
     }

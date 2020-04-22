@@ -5,19 +5,43 @@
  */
 Craft.LeafCategorySelectInput = Craft.CategorySelectInput.extend(
     {
-        getDisabledElementIds: function() {
-            var ids = this.base();
+        leafCategoriesDisabledElementIds: [],
+
+        init: function(settings) {
+            this.base(settings);
 
             if (typeof leafCategoriesDisabledElementIds !== 'undefined') {
-                ids = ids.concat(leafCategoriesDisabledElementIds);
+                this.leafCategoriesDisabledElementIds = leafCategoriesDisabledElementIds;
             }
 
-            return ids;
+            this.handleElementsWithDescendants();
         },
 
-        removeElement: function($element) {
-            this.base($element);
+        handleElementsWithDescendants: function() {
+            this.$elementsContainer.find('.element').each((index, element) => {
+                // If element has children
+                if ($(element).parent().siblings('ul').length) {
+                    $(element).parent().addClass('disabled');
+                    $(element).find('input').first().remove();
+                }
+            });
+        },
 
-            this.updateDisabledElementsInModal();
+        getDisabledElementIds: function() {
+            const ids = this.base();
+
+            return ids.concat(leafCategoriesDisabledElementIds);;
+        },
+
+        onSelectElements: function (elements) {
+            this.handleElementsWithDescendants();
+        },
+
+        onRemoveElements: function (elements) {
+            this.handleElementsWithDescendants();
+
+            if (this.modal) {
+                this.updateDisabledElementsInModal();
+            }
         },
     });
