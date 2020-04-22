@@ -12,7 +12,6 @@ Craft.LeafCategorySelectInput = Craft.CategorySelectInput.extend(
                 ids = ids.concat(leafCategoriesDisabledElementIds);
             }
 
-            console.log('getDisabledElementIds');
             return ids;
         },
 

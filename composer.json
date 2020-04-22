@@ -17,6 +17,7 @@
         "handle": "leaf-categories",
         "developer": "PutYourLightsOn",
         "developerUrl": "https://putyourlightson.com/",
+        "documentationUrl": "https://github.com/putyourlightson/craft-leaf-categories",
         "class": "putyourlightson\\leafcategories\\LeafCategories"
     }
 }
