@@ -23,6 +23,12 @@ Craft.LeafCategorySelectInput = Craft.CategorySelectInput.extend(
                 if ($(element).parent().siblings('ul').length) {
                     $(element).parent().addClass('disabled');
                     $(element).find('input').first().remove();
+
+                    // If no children are enabled then remove the element
+                    // (using jQuery to avoid an infinite loop)
+                    if ($(element).parent().siblings('ul').find('input:enabled').length == 0) {
+                        $(element).parent().parent().remove();
+                    }
                 }
             });
         },
